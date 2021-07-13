@@ -1,19 +1,34 @@
 const { Counter } = require('prom-client');
 
-const counter1 = new Counter({
+const counterHttp = new Counter({
     help: '计数器',
-    name: 'count1',
-    labelNames: ['label1'],
+    name: 'http_request_total',
+    labelNames: ['code', 'path'],
 });
 
 setInterval(() => {
-    counter1.inc(
+    // 模拟http 请求
+    counterHttp.inc(
         {
-            label1: 'he',
+            code: 200,
+            path: '/path1',
         },
-        10
+        2
     );
-}, 1000);
-module.exports = {
-    counter1,
-};
+    counterHttp.inc(
+        {
+            code: 200,
+            path: '/path2',
+        },
+        1
+    );
+    counterHttp.inc(
+        {
+            code: 404,
+            path: '/path1',
+        },
+        1
+    );
+}, 1 * 1000);
+
+module.exports = { counterHttp };
