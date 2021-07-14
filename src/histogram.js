@@ -30,6 +30,11 @@ setInterval(() => {
         .observe(Math.random() * 600);
 }, 1000);
 
+/**
+ * 请求平均耗时: rate(http_request_duration_seconds_sum[1m])/rate(http_request_duration_seconds_count[1m])
+ * 汇总: sum(rate(http_request_duration_seconds_sum[1m]))/sum(rate(http_request_duration_seconds_count[1m]))
+ */
+
 module.exports = {
     histogramCostTime,
 };

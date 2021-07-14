@@ -31,4 +31,9 @@ setInterval(() => {
     );
 }, 1 * 1000);
 
+/**
+ * 每分钟请求数：increase(http_request_total[1m])
+ * 汇总: sum(increase(http_request_total[1m]))
+ */
+
 module.exports = { counterHttp };
